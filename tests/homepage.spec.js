@@ -11,12 +11,11 @@ test.describe('Vention Homepage', () => {
     await expect(startNowButton).toBeVisible();
     await startNowButton.click();
 
-    // Instead of waiting for the exact English URL, wait for a URL that includes "/signup"
+    // wait for a URL that includes "/signup" as English-French was causing problems
     await page.waitForURL('**/signup');
     expect(page.url()).toContain('/signup');
 
-    // From here, you can also check if sign-up elements are present
-    // For example:
+    // checking if sign up elements are visible
     await expect(page.locator('button:has-text("inscrire")')).toBeVisible();
   });
 });
