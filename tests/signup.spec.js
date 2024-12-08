@@ -25,30 +25,27 @@ test.describe('Vention Signup Page', () => {
     // just check for the checkbox itself as the <a> tag was causing problems when looking for the text
     await page.check('input[type="checkbox"]');
 
-    // Check the sign-up button
+    // sign-up button
     await expect(page.locator('button:has-text("sign up")')).toBeVisible();
 
-    // Check the login link text
+    // login link test
     await expect(page.locator('text="Already have an account?"')).toBeVisible();
   });
 
-/*
+
   test('should show an error for invalid input', async ({ page }) => {
-    // Fill in an invalid email
-    await page.fill('[placeholder="Entrez votre e-mail"]', 'not-an-email');
+    // enter an invalid email (not-an-email) and submit the form
+    await page.fill('[placeholder="Enter your email"]', 'not-an-email');
 
-    // Attempt to sign up without accepting conditions
-    await page.click('button:has-text("S\'inscrire")');
+    await page.click('button:has-text("Sign up")');
 
-    // Expect some validation error. You need to see what error appears.
-    // If you run the test in headed mode and see a message like
-    // "Vous devez entrer une adresse e-mail valide.", you can do:
-    await expect(page.locator('text="Vous devez entrer une adresse e-mail valide."')).toBeVisible();
+    //Validation error if invalid test is entered
+    await expect(page.locator('text="You must enter a valid email address."')).toBeVisible();
 
     // If there's also an error for not checking the conditions box, find that text and assert it as well:
-    // await expect(page.locator('text="Vous devez accepter les termes et conditions pour continuer."')).toBeVisible();
+    await expect(page.locator('text="You must agree to the terms and conditions to continue."')).toBeVisible();
   });
-  */
+  
 });
 
 
