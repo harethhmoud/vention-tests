@@ -3,31 +3,35 @@ const { test, expect } = require('@playwright/test');
 test.describe('Vention Signup Page', () => {
 
   test.beforeEach(async ({ page }) => {
-    await page.goto('https://auth.vention.io/fr/signup');
+    await page.goto('https://auth.vention.io/en/signup');
     await page.pause();
 });
 
 
   test('should display sign-up form elements', async ({ page }) => {
-    // main heading
-    await expect(page.locator('h1')).toContainText("Rejoignez la platforme");
+    await page.goto('https://auth.vention.io/en/signup');
 
-    // email input
-    await expect(page.locator('[placeholder="Entrez votre e-mail"]')).toBeVisible();
+    // if running in headed mode
+    // await page.pause();
 
-    // Check the terms and conditions text and the checkbox
-    // ensure text is present
-    await expect(page.locator('text="politique de"')).toBeVisible();
+    await expect(page.locator('h1')).toContainText("Manufacturing Automation Platform");
 
-    // ensure checkbox is present
+    await expect(page.locator('[placeholder="Enter your email"]')).toBeVisible();
+
+    const checkbox = page.getByRole('checkbox', { name: /I agree to Vention/ });
+    await checkbox.click();
+    await expect(checkbox).toHaveAttribute('aria-checked', 'true');
+    
+    // just check for the checkbox itself as the <a> tag was causing problems when looking for the text
     await page.check('input[type="checkbox"]');
 
-    // check the sign-up button
-    await expect(page.locator('button:has-text("S\'inscrire")')).toBeVisible();
+    // Check the sign-up button
+    await expect(page.locator('button:has-text("sign up")')).toBeVisible();
 
-    // check the login link
-    await expect(page.locator('text="Vous avez déjà un compte? Connexion"')).toBeVisible();
+    // Check the login link text
+    await expect(page.locator('text="Already have an account?"')).toBeVisible();
   });
+
 /*
   test('should show an error for invalid input', async ({ page }) => {
     // Fill in an invalid email
@@ -46,5 +50,6 @@ test.describe('Vention Signup Page', () => {
   });
   */
 });
+
 
 
