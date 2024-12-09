@@ -39,10 +39,10 @@ test.describe('Vention Signup Page', () => {
 
     await page.click('button:has-text("Sign up")');
 
-    //Validation error if invalid test is entered
+    // if invalid email is entered
     await expect(page.locator('text="You must enter a valid email address."')).toBeVisible();
 
-    // If there's also an error for not checking the conditions box, find that text and assert it as well:
+    // if t&c isn't checked
     await expect(page.locator('text="You must agree to the terms and conditions to continue."')).toBeVisible();
   });
   
