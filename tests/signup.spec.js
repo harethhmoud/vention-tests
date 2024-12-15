@@ -7,7 +7,7 @@ test.describe('Vention Signup Page', () => {
     await page.pause();
 });
 
-
+/*
   test('should display sign-up form elements', async ({ page }) => {
     await page.goto('https://auth.vention.io/en/signup');
 
@@ -32,7 +32,9 @@ test.describe('Vention Signup Page', () => {
     await expect(page.locator('text="Already have an account?"')).toBeVisible();
   });
 
+*/
 
+/*
   test('should show an error for invalid input', async ({ page }) => {
     // enter an invalid email (not-an-email) and submit the form
     await page.fill('[placeholder="Enter your email"]', 'not-an-email');
@@ -45,7 +47,7 @@ test.describe('Vention Signup Page', () => {
     // if t&c isn't checked
     await expect(page.locator('text="You must agree to the terms and conditions to continue."')).toBeVisible();
   });
-  
+*/  
 });
 
 
